@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>thu</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #ffe6f0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .envelope {
+      width: 300px;
+      height: 200px;
+      background-color: #ffb6c1;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .envelope:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+
+   .sun {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  background-image: url('sun.png'); /* ✅ Đúng cú pháp: dấu chấm và chấm phẩy */
+  background-size: cover;           /* ✅ Tự động căn ảnh vừa khung */
+  background-repeat: no-repeat;     /* ✅ Không lặp lại */
+  border-radius: 50%;
+  animation: bounce 2s infinite;
+  z-index: 2;
+}
+
+    @keyframes bounce {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -10px); }
+    }
+
+    .letter-content {
+      display: none;
+      padding: 40px 20px 20px 20px;
+      text-align: center;
+      font-size: 20px;
+      color: #d6336c;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="envelope" onclick="openLetter(this)">
+  <div class="sun"></div>
+  <div class="letter-content">
+  thầy đi dạy vui dẻ hông quoạ à :v<img src="cá sấu.png" alt="cá sấu" style="width: 1cm; vertical-align: middle;">
+</div>
+
+  </div>
+</div>
+
+<div class="crocodile"></div>
+
+<script>
+  function openLetter(envelope) {
+    const sun = envelope.querySelector('.sun');
+    const content = envelope.querySelector('.letter-content');
+    sun.style.display = 'none';
+    content.style.display = 'block';
+    envelope.style.backgroundColor = '#fff0f5';
+  }
+</script>
+
+</body>
+</html>
