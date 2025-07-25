@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>thu</title>
+  <title>Thư Đáng Yêu</title>
   <style>
     * {
       box-sizing: border-box;
@@ -38,20 +38,20 @@
       transform: translate(-50%, -50%) scale(1.05);
     }
 
-   .sun {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  background-image: url('sun.png'); 
-  background-size: cover;           
-  background-repeat: no-repeat;     
-  border-radius: 50%;
-  animation: bounce 2s infinite;
-  z-index: 2;
-}
+    .sun {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      background-image: url('sun.png'); 
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      animation: bounce 2s infinite;
+      z-index: 2;
+    }
 
     @keyframes bounce {
       0%, 100% { transform: translate(-50%, 0); }
@@ -72,6 +72,33 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Bong bóng xanh nhạt */
+    #bubble-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: 0;
+      background-color: rgba(173, 216, 230, 0.6); /* Light Blue */
+      border-radius: 50%;
+      animation: floatUp 4s ease-in infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) scale(0.5);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -79,13 +106,12 @@
 <div class="envelope" onclick="openLetter(this)">
   <div class="sun"></div>
   <div class="letter-content">
-  thầy Huy đi dạy dui dẻ hông quoạ à :v<img src="cá sấu.png" alt="cá sấu" style="width: 1cm; vertical-align: middle;">
-</div>
-
+    Thầy Huy đi dạy dui dẻ hông quoạ à :v 
+    <img src="cá sấu.png" alt="cá sấu" style="width: 1cm; vertical-align: middle;">
   </div>
 </div>
 
-<div class="crocodile"></div>
+<div id="bubble-container"></div>
 
 <script>
   function openLetter(envelope) {
@@ -94,6 +120,26 @@
     sun.style.display = 'none';
     content.style.display = 'block';
     envelope.style.backgroundColor = '#fff0f5';
+
+    createBubbles();
+  }
+
+  function createBubbles() {
+    const container = document.getElementById('bubble-container');
+
+    for (let i = 0; i < 20; i++) {
+      const bubble = document.createElement('div');
+      bubble.classList.add('bubble');
+      bubble.style.left = Math.random() * 100 + 'vw';
+      const size = Math.random() * 15 + 10;
+      bubble.style.width = bubble.style.height = size + 'px';
+      bubble.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      container.appendChild(bubble);
+
+      setTimeout(() => {
+        bubble.remove();
+      }, 5000);
+    }
   }
 </script>
 
